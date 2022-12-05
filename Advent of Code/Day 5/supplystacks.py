@@ -27,6 +27,7 @@ def process_instructions(instructions):
 with open('input.txt') as f:
 	stacks, instructions = f.read().split('\n\n')	
 	stacks_array = process_stacks(stacks)
+	stacks_array2 = process_stacks(stacks)
 	instructions_array = process_instructions(instructions.splitlines())
 	
 	for instruction in instructions_array:
@@ -36,5 +37,15 @@ with open('input.txt') as f:
 	solution = [stack[-1] for stack in stacks_array]
 	print(solution)
 	
+	for instruction in instructions_array:
+		
+		crates = stacks_array2[instruction[1]][-instruction[0]:]
+		
+		stacks_array2[instruction[1]][-instruction[0]:] = []
+		for crate in crates:
+			stacks_array2[instruction[2]].append(crate)
+	
+	solution2 = [stack[-1] for stack in stacks_array2]
+	print(solution2)
 	
 	
